@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Personalized Color Vision Deficiency (CVD) Simulator and Correction tool. Visualise and correct Deuteranopia, Protanopia, and Tritanopia.">
+    <title>CVD Color Vision Deficiency Simulator & Corrector</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="glass-bg"></div>
+    <div class="app-container">
+        <header>
+            <div class="logo-area">
+                <span class="gradient-text font-heavy">Adaptive Colour Correction for HCI</span>
+                <span class="badge pulse-badge">CVD Suite Pro</span>
+            </div>
+            <h1 class="main-title">Color Vision Deficiency <br /><span class="gradient-text glow-text">Simulator &
+                    Corrector</span></h1>
+            <p class="subtitle">Experience, understand, and vividly correct digital images for red, green, and blue
+                color blindness.</p>
+        </header>
+
+        <main>
+            <!-- Control Panel -->
+            <section class="control-panel card animate-fade-in" id="controls">
+                <div class="control-group">
+                    <label for="image-select" class="control-label">
+                        <span class="icon">🖼️</span> Select Target Image
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="image-select">
+                            <option value="" disabled selected>Loading images...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label"><span class="icon">⚡</span> Quick Select Animals</label>
+                    <div class="quick-gallery" id="quick-gallery">
+                        <!-- Dynamically filled with popular images -->
+                    </div>
+                </div>
+
+
+            </section>
+            <section>
+                <div class="control-group text-center">
+                    <label class="control-label "><span class="icon">👁️</span> Select Deficiency Type</label>
+                    <div class="btn-group">
+                        <button class="cvd-btn active" id="btn-deuteranopia" data-cvd="deuteranopia">
+                            <span class="btn-title">Deuteranopia</span>
+                            <span class="btn-desc">Green Blindness</span>
+                        </button>
+                        <button class="cvd-btn" id="btn-protanopia" data-cvd="protanopia">
+                            <span class="btn-title">Protanopia</span>
+                            <span class="btn-desc">Red Blindness</span>
+                        </button>
+                        <button class="cvd-btn" id="btn-tritanopia" data-cvd="tritanopia">
+                            <span class="btn-title">Tritanopia</span>
+                            <span class="btn-desc">Blue Blindness</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image Grid Area -->
+            <section class="results-grid">
+                <!-- Original Image Card -->
+                <div class="image-card card animate-slide-up" style="--delay: 1;">
+                    <div class="card-header">
+                        <h3>Original Image</h3>
+                        <span class="tag normal">Normal Vision</span>
+                    </div>
+                    <div class="image-wrapper">
+                        <img id="img-original" src="" alt="Original View" loading="lazy">
+                        <div class="image-loader" id="loader-original"></div>
+                    </div>
+                    <div class="card-footer">
+                        <p>This is the standard RGB image as seen by someone with typical trichromatic color vision.</p>
+                    </div>
+                </div>
+
+                <!-- Simulated Image Card -->
+                <div class="image-card card animate-slide-up" style="--delay: 2;">
+                    <div class="card-header">
+                        <h3>Simulated Image</h3>
+                        <span class="tag warning" id="simulated-tag">Deuteranopia</span>
+                    </div>
+                    <div class="image-wrapper">
+                        <img id="img-simulated" src="" alt="Simulated View" loading="lazy">
+                        <div class="image-loader" id="loader-simulated"></div>
+                    </div>
+                    <div class="card-footer">
+                        <p id="simulated-desc">Simulates how the image is perceived under the selected color vision
+                            deficiency.</p>
+                    </div>
+                </div>
+
+                <!-- Corrected Image Card -->
+                <div class="image-card card animate-slide-up" style="--delay: 3;">
+                    <div class="card-header">
+                        <h3>Corrected Image</h3>
+                        <span class="tag success" id="corrected-tag">Corrected (Deuteranopia)</span>
+                    </div>
+                    <div class="image-wrapper">
+                        <img id="img-corrected" src="" alt="Corrected View" loading="lazy">
+                        <div class="image-loader" id="loader-corrected"></div>
+                    </div>
+                    <div class="card-footer">
+                        <p id="corrected-desc">Color-compensated version designed to restore contrast and detail
+                            visibility using daltonization.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education/Info Section -->
+            <section class="info-section card animate-fade-in">
+                <h2>Understanding Color Vision Deficiencies</h2>
+                <div class="info-grid">
+                    <div class="info-card" id="info-deuteranopia">
+                        <h4>Deuteranopia (Deuteranomalous)</h4>
+                        <p>Insensitivity to green light due to missing or malfunctioning M-cones. It is the most common
+                            form of color blindness. Greens look beige, reds look brownish-yellow, and distinguishing
+                            between violet and blue is highly challenging.</p>
+                    </div>
+                    <div class="info-card" id="info-protanopia">
+                        <h4>Protanopia (Protanomalous)</h4>
+                        <p>Insensitivity to red light due to missing or malfunctioning L-cones. Red appears dark and
+                            brownish, orange/green can blend, and bright red might appear almost black or dark grey.</p>
+                    </div>
+                    <div class="info-card" id="info-tritanopia">
+                        <h4>Tritanopia (Tritanomalous)</h4>
+                        <p>Insensitivity to blue light due to missing or malfunctioning S-cones. This blue-yellow
+                            deficiency is extremely rare. Blue looks green, and yellow looks pink or light violet.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026. Built for color accessibility and research.</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
